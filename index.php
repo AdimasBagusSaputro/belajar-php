@@ -1,19 +1,50 @@
 <?php
+$con = mysqli_connect("localhost","root","","fakultas");
+if(mysqli_connect_errno()){
+    echo "koneksi gagal". mysqli_connect_error();
+}else{
+    echo "koneksi berhasil";
+}
+$query = "SELECT * FROM mahasiswa";
+$result = mysqli_query($con,$query);
+$mahasiswa = [];
+if ($result){
 
-echo "Hello World";
+    while($row = mysqli_fetch_assoc($result)){
+        $mahasiswa [] = $row;
+    }
+    mysqli_free_result($result);
+}
 
-$nama = "Adimas";
-$usia = 20;
-
-echo "Nama saya <strong>$nama</strong>, saya berusia $usia tahun. <br>";
-
-$namaAdik = "dimas";
-$umurAdik = 15;
-
-echo "Nama adik Saya <strong>$namaAdik</strong>, adik saya berusia $umurAdik tahun.<br>";
-
-$selisihumur = $usia - $umurAdik;
-
-echo "selisih usia usia saya dan adik saya adalah $selisihumur tahun";
+mysqli_close($con);
+foreach($mahasiswa as $value){
+    echo $value["nama"];
+}
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mahasiswa</title>
+</head>
+<body>
+    <h1>Data Mahasiswa</h1>
+   
+    <table border="1" style="width: ;100%">
+        <tr>
+            <th>NIM</th>
+            <th>Nama</th>
+        </tr>
+        <?php foreach($mahasiswa as $value): ?>
+        <tr>
+            <td><?php echo $value["nim"]; ?></td>
+            <td><?php echo $value["nama"]; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>
