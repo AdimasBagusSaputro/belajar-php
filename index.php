@@ -1,10 +1,19 @@
 <?php
 
-echo "Hello World"
+echo "Hello World";
 
-$nama = "Adimas"
-$usia = "20"
+$nama = "Adimas";
+$usia = 20;
 
-echo "Nama saya $nama, saya berusia $usia";
+echo "Nama saya <strong>$nama</strong>, saya berusia $usia tahun. <br>";
+
+$namaAdik = "dimas";
+$umurAdik = 15;
+
+echo "Nama adik Saya <strong>$namaAdik</strong>, adik saya berusia $umurAdik tahun.<br>";
+
+$selisihumur = $usia - $umurAdik;
+
+echo "selisih usia usia saya dan adik saya adalah $selisihumur tahun";
 
 ?>
